@@ -300,7 +300,7 @@ class Game{
                 let chunk = new Chunk(vertex_offset, [chunk_x, chunk_y, chunk_z], this.chunk_size, side_length);
 
                 this.chunks.push(chunk);
-                chunk.generate(this.landscape);
+                chunk.generate(this.space_matter);
 
                 for (let k=0; k<chunk.positions.length; k++){
                     positions.push(chunk.positions[k]);
@@ -332,7 +332,7 @@ class Game{
             if (Math.round(u[0]/dl) != 0 || Math.round(u[1]/dl) != 0){
                 chunk.position[0] += Math.round(u[0]/dl) * dl;
                 chunk.position[1] += Math.round(u[1]/dl) * dl;
-                chunk.generate(this.landscape);
+                chunk.generate(this.space_matter);
                 this.engine.updateVertices(chunk.vertex_offset * 3, chunk.positions, chunk.normals, chunk.diffuseColors, chunk.transparency);
             }
         }
@@ -353,7 +353,7 @@ class Game{
             //update player position
             this.player.move(dt);
 
-            const h = this.landscape(this.player.position[0], this.player.position[1]);
+            const h = this.space_matter(this.player.position[0], this.player.position[1]);
             if (this.player.position[2] < h + 2){
                 this.player.position[2] = h + 2;
                 this.player.vitesse[2] = 0;
